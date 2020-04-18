@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+    xhr.setRequestHeader("Content-type", "appliction/x-www-form-urlencoded|multipart/form-data|application/json|text/html");
+
+
+    function sendText(txt, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/", true);
+        xhr.responseType = 'text';
+        xhr.onload = callback;
+        xhr.send(txt);
+    }
+    sendText("Hello world", function(e) {
+        if (this.status == 200) {
+            console.log(this.response);
+        }
+    })
+    </script>
+   
+</body>
+
+</html>

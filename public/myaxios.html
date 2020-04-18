@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+    // 原生ajax
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", './photo.jpg', true);
+    xhr.responseType = "blob";
+    xhr.onload = function(data) {
+        if (this.status == 200) {
+            var url = window.URL.createObjectURL(this.response);
+            var img = new Image();
+            img.src = url;
+            document.body.appendChild(img);
+
+        }
+    }
+    xhr.send();
+    </script>
+   <!--   <script>
+    //原生ajax
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", './index.html', true);
+    xhr.responseType = "document";
+    xhr.onload = function(e) {
+        if (this.status == 200) {
+          console.log(this.response);
+
+        }
+    }
+    xhr.send();
+    </script>
+      <script>
+    //原生ajax
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", './test.json', true);
+    xhr.responseType = "json";
+    xhr.onload = function(e) {
+        if (this.status == 200) {
+          console.log(this.response);
+
+        }
+    }
+    xhr.send();
+    </script> -->
+    <script>
+    	
+    </script>
+</body>
+
+</html>
