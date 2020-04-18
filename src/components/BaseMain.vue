@@ -36,7 +36,7 @@ export default {
                 // { id: 3, name: 'Tracy', age: 22, sexy: '男' },
                 // { id: 4, name: 'Chris', age: 36, sexy: '女' }
             ],
-            vpeople: [],
+            vpeople: null,
             //////////////
             show: false,
             isEdit: false, //是不时入编辑状态
@@ -46,7 +46,7 @@ export default {
             totalRecord: 0,
             pageSize: 5,
             pageGroup: 5,
-            currentpg:1,
+            currentpg: 1,
         }
     },
     computed: {
@@ -63,7 +63,7 @@ export default {
                     if (this.people.length == 0) {
                         var $id_max = 0;
                     } else {
-                        var $id_max = this.people.reduce(function(init, item, index) {
+                        var $id_max = this.vpeople.reduce(function(init, item, index) {
                             return init > item.id ? init : item.id;
                         }, 0);
                     };
@@ -73,7 +73,9 @@ export default {
                     //进行对象合并，使用Object.assign()方法
                     var o = Object.assign({ id: parseInt($id_max) + 1 }, p)
                     //追加到数组尾部
-                    this.people.push(o);
+                    this.vpeople.push(o);
+                    this.totalRecord = this.vpeople.length;
+                    this.currentpg=Math.ceil(this.totalRecord / this.pageSize);
                     // this.show = false;
 
                 } else { //没有输入用户名提示
@@ -84,19 +86,21 @@ export default {
                 this.people.splice(this.edIndex, 1, p);
             }
             /////
-            Storage.set('data', this.people);
+            Storage.set('data', this.vpeople);
         },
         close() { //监听子组件close事件
             this.show = false;
             this.isEdit = false;
         },
         removeData(p) { //删除数据
-            let indexById = this.people.findIndex(function(item, index) {
+            let indexById = this.vpeople.findIndex(function(item, index) {
                 return item.id == p;
             });
             this.people.splice(indexById, 1);
-            /////
-            Storage.set('data', this.people);
+            this.vpeople.splice(indexById, 1);
+            Storage.set('data', this.vpeople);
+            this.totalRecord = this.vpeople.length;          
+
         },
 
         editData(p) { //编辑数据,使用Aarry.findIndex()方法查当前id的数组下标位置indexById
@@ -118,14 +122,19 @@ export default {
             }
         },
         sortBy(value) {
-
+            //正在建设中
         },
         pageChange(idx) {
             // console.log(idx)
-            //获取当前记录（数组下标）         
-            idx=idx-1;
-            this.people = this.vpeople.slice(idx* this.pageSize, this.pageSize*(idx+1));
-            console.log((2 *idx - 1) * this.pageSize);
+            //获取当前记录（数组下标）  
+            if(idx){
+                this.currentpg=idx;
+            }else{
+                this.currentpg=1;
+            }      
+            idx = idx - 1;
+            this.people = this.vpeople.slice(idx * this.pageSize, this.pageSize * (idx + 1));
+
         }
     },
 
@@ -138,9 +147,15 @@ export default {
         // 读取localStorage中的数据
         this.vpeople = Storage.get('data');
         this.totalRecord = this.vpeople.length;
-        var p=this.currentpg-1;
-        this.people = this.vpeople.slice(p* this.pageSize, this.pageSize*(p+1));
-      
+
+    },
+    watch: {
+        vpeople: function(newValue) {
+            // console.log(value);
+            this.people = newValue;
+            var p = this.currentpg - 1;
+            this.people = this.vpeople.slice(p * this.pageSize, this.pageSize * (p + 1));
+        }
     }
 }
 </script>

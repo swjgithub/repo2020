@@ -46,7 +46,7 @@ export default {
     },
     watch: { //监视is_edit:是否进入编辑状态
         is_edit: function(value, oldValue) {
-            console.log(value, oldValue);
+            // console.log(value, oldValue);
             if (value) { //变量解构
                 [this.id, this.name, this.age, this.sexy] = [this.edData.id, this.edData.name, this.edData.age, this.edData.sexy];
             }
