@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>在控制台看测试结果</div>
+    <script>
+		var xhr=new XMLHttpRequest();
+		xhr.open("Get","https://jsonplaceholder.typicode.com/posts",true);
+		xhr.responseType="json";
+
+		xhr.onload=function(e){
+			if(this.status==200){
+				console.log(this.response);
+			}
+		}
+		xhr.send();
+	</script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		axios.get('https://jsonplaceholder.typicode.com/posts').
+		then(function(res){
+			console.log(res);
+		}).catch(function(err){
+			console.log(err);
+		})
+	</script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script>
+		axios.post('https://jsonplaceholder.typicode.com/posts',{id:2,name:'Nannan'}).
+		then(function(res){
+			console.log(res);
+		}).catch(function(err){
+			console.log(err);
+		})
+	</script>
+    <script>
+    var xhr = new XMLHttpRequest();
+    var frmData = new FormData();
+    frmData.append('id', 2);
+    frmData.append('name', 'Nancy');
+
+    xhr.open("POST", "https://jsonplaceholder.typicode.com/posts", true);
+    // xhr.responseType="json";
+    // xhr.setRequestHeader("Content-Type","application/json");
+    // xhr.setRequestHeader("Content-Type","multipart/form-data");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    console.log(1);
+    xhr.onload = function(e) {
+
+        if (this.status == 201) {
+
+            console.log("发送成功！");
+            console.log(this.response);
+            console.log(this.getResponseHeader("Content-Type"))
+        }
+    }
+    xhr.send("foo=bar&lorem=ipsum");
+    // xhr.send(frmData);
+    </script>
+</body>
+
+</html>
