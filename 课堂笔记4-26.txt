@@ -1,0 +1,86 @@
+
+题目1：base64码生成
+
+
+题目2：如何引用base64图像代码
+
+
+题目：git使用工程流程
+
+一、本地安装和启动
+>git --version
+
+二、本地使用
+1.新建或进入版本管理文件夹
+>d:
+>md my-work
+>cd my-work
+
+2.建立仓库
+>git init
+说明：建立一个隐藏的.git文件夹
+
+>git config user.name "swjgithub"
+>git config user.email "swjem@126.com"
+
+3.建立文件
+>vim readme.txt
+
+4.添加文件到仓库中
+>git add 文件名(或.)
+>git status 
+(当前状态)
+>git commit -m "更新或提交的说明"
+(>git commit -a -m)
+
+5.本地删除/修改/移动/查询
+(1)查看提交记录
+>git log
+(2)撤销未提交的修改
+>git checkout 文件名
+>git diff
+
+(3)版本回退
+>git reset HEAD XXX
+>git checkout XXX
+///////////////
+
+>git reset --hard <commit-id>
+
+>git reflog
+git reflog 可以查看所有分支的所有操作记录
+
+三、远程仓库的使用
+
+1.远程注册(github.com)
+2.生成SSH公钥(已生成可略过)
+>ssh-keygen
+~.pub
+3.在github.com上添加SSH公钥
+
+4.添加远程仓库
+>git remote add origin git@github.com:swjgithub/repo2020.git
+
+5.查看远程
+>git remote
+>git remote -v
+>git remote show origin
+
+6.创建分支
+>git branch 分支名称
+>git branch
+7.改变当前分支
+>git checkout 分去名称
+>git checkout master
+
+8.查看远程分支
+>git branch -r
+>git branch 
+(本地)
+
+9.将本地代码传到github.com的仓库中
+>git push origin master
+>git push origin my
+
+10.克隆(本地与服务器端同步)
+>git pull
