@@ -1,0 +1,44 @@
+操作流程
+一、环境搭建
+
+二、启动项目
+1.进入项目文件夹
+d:
+>cd mywork
+>cd personinfo
+
+2.运行项目
+>npm run serve
+
+三、编代码
+
+1.先分析工作任务
+2.编写根组件App.vue
+3.建立子组件
+(1)创建子组件文件.vue
+BaseDialog.vue
+BaseMain.vue
+BasePagination.vue
+BaseTable.vue
+(2)引入子组件
+import 名称 from "子组件"
+
+(3)注册组件
+在Vue实例中，使用components选项来完成
+components:{
+	组件名称
+}
+
+(4)使用组件
+在template中完成
+<组件名称>  
+注：利用横杠分隔，字母小写
+
+四、编写BaseDialo.vue
+.header>h2{编辑个人信息}+^.main>ul>li*4^^+.footer
+
+label{ID:}+input:text
+label{姓名:}+input:text
+label{年龄:}+input:number
+label{性别:}+{男}+input[value=男][type=radio]+{女}+input[value=女][type=radio]
+button{确认操作}+button{结束操作}
