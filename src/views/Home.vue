@@ -12,10 +12,12 @@
                 {{book.title}}
             </template>
             <template v-slot:body>
-                <p>{{book.authors}}</p>
+                
                 <div>
                     <img :src="book.img_url" />
                 </div>
+                 <p>{{book.authors}}</p>
+                  <p>图书单价:￥50.00</p>
             </template>
             <template v-slot:footer>
                 <div>

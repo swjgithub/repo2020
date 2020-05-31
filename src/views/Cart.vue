@@ -1,3 +1,14 @@
 <template>
-	<div>购物车</div>
+    <div>
+        <my-header></my-header>
+        <div>cart</div>
+    </div>
 </template>
+<script>
+import MyHeader from "../components/MyHeader.vue"
+export default {
+    components: {
+        MyHeader,
+    }
+}
+</script>

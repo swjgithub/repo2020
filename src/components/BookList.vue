@@ -22,6 +22,7 @@ export default {
     flex-flow: row wrap;
     justify-content: space-around;
     margin: 20px auto 40px;
+    margin: auto;
 }
 
 .new>div {
@@ -29,8 +30,6 @@ export default {
     margin-bottom: 25px;
     text-align: center;
     flex: 1;
-    /* border: 1px #f00 solid; */
-
 }
 
 .new>div:hover {
@@ -40,7 +39,8 @@ export default {
 }
 
 .new img {
-    min-width: 10%;
+    min-width: 5%;
+
     /* max-width: 70%; */
 }
 

@@ -16,9 +16,10 @@ export default {
     width: 60px;
     height: 24px;
     border-radius: 2px;
-    background: #f0f;
+    background: rgb(216,23,5);
     margin-right: 20px;
     text-align: center;
+    color: #fff;
 }
 .announce {
     margin: 15px 0;
