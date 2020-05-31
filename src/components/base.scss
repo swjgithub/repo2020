@@ -1,0 +1,15 @@
+.swiper {
+    width: 100%;
+    height: 180px;
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.15em;
+        background-color: #ff0;
+        // overflow: auto;
+    }
+
+}
