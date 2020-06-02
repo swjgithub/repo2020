@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	{$data.name|md5}
+	<hr>
+	{$data.age}
+	<hr>
+	{$Think.server.php_self}
+	{$Think.server.session}
+	<hr>
+	{$Think.const.PHP_VERSION}
+	<hr>
+	{$Think.config.database.database}
+	<hr>
+	{//请求变量的输出}
+	{$Request.root}	<br>
+	{$Request.root.true}
+	<br>
+	{$Request.controller}
+	<br>
+	{$Request.action}
+	<br>
+	{//?name=Linda}
+	{$Request.get.name}
+	<br>
+	{//name/Frank}
+	{$Request.param.name}
+	<br>
+	{$Request.path}
+	<br>
+	{$Request.host}
+	{$Request.ip}
+</body>
+</html>

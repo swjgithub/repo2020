@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{block name="title"}标题{/block}</title>
+	{block name="src"}用于加载外部资源{/block}
+</head>
+<body>
+	{include file="/view05/public:header" /}
+
+	{include file="/view05/public:nav" /}
+
+	{block name="main"}这是网页主体部分{/block}
+
+	{include file="/view05/public:footer" /}
+</body>
+</html>

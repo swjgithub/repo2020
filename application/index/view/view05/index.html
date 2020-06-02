@@ -1,0 +1,57 @@
+{extend name="/view05/public/base"}
+{block name="src"}
+{load href="/static/bootstrap/css/bootstrap.css"}
+{load href="/static/jQuery/jquery.js"}
+{load href="/static/bootstrap/js/bootstrap.js"}
+{/block}
+
+{block name="title"}
+{$title}
+{/block}
+
+{block name="main"}
+{__block__}
+<div class="container">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h2 class="text-center">学生信息表</h2>
+        <table class="table table-default text-center table-bordered table-striped ">
+            <thead>
+                <tr class="bg-primary">
+                    <td>ID</td>
+                    <td>姓名</td>
+                    <td>邮箱</td>
+                    <td>年龄</td>
+                    <td>课程</td>
+                    <td>成绩</td>
+                    <td>创建时间</td>
+                    <td>更新时间</td>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="list" id="item"}
+                <tr>
+                    <td>{$item.id}</td>
+                    <td>{$item.name}</td>
+                    <td>{$item.email}</td>
+                    <td>{$item.age}</td>
+                    <td>{$item.course}</td>
+                    <td>
+                        <!--  {if $item.grade>60}
+                            及格
+                            {else/}
+                            不及格
+                            {/if} -->
+                        {$item.grade>=60 ? "及格":"不及格"}
+                    </td>
+                    <td>{$item.create_time|date='Y-m-d H:i'}</td>
+                    <td>{$item.update_time}</td>
+                </tr>
+                {/volist}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="text-center">{$list|raw}</div>
+</div>
+{/block}

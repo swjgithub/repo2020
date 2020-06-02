@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    {load href="/static/bootstrap/bootstrap.css"}
+    <!-- <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css"> -->
+    <script src="/static/jQuery/jquery.js"></script>
+    <!-- <script src="/static/bootstrap/js/bootstrap.js"></script> -->
+     {load href="/static/bootstrap/bootstrap.js"}
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"> </div>
+            <div class="col-md-8">
+                <h2 class="text-center">学生成绩表</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="thead-dark">
+                            <th>ID</th>
+                            <th>姓名</th>
+                            <th>课程</th>
+                            <th>成绩</th>
+                            <th>年龄</th>
+                            <th>邮箱</th>
+                            <th>创建时间</th>
+                            <th>更新时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {volist name="data" id="item"}
+                        <tr>
+                            <td>{$item.id}</td>
+                            <td>{$item.name}</td>
+                            <td>{$item.course}</td>
+                            <td>{$item.grade}</td>
+                            <td>{$item.age}</td>
+                            <td>{$item.email}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {/volist}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-2"> </div>
+             <div>{$data|raw}</div>
+             <div>{$Request.action}</div>
+        </div>
+
+    </div>
+</body>
+
+</html>
