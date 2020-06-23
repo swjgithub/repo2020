@@ -1,0 +1,79 @@
+题目：实现注册功能
+
+一、准备
+1.数据库和数据表的创建
+(1)th数据库
+(2)user数据表
+(3)数据库连接
+2.公共类库
+app\common\controller\Base
+app\common\model\Usermodel
+app\common\validate\User
+3.外部资源
+\static\bootstrap
+\static\jQuery
+
+
+二、创建模块
+index
+
+1.控制器
+(1)Index.php
+(2)User.php
+->register
+->login
+2.视图模板
+(1)view\index\index.html
+(2)view\public\base.html
+...
+(3)view\user\register.html
+(4)view\user\login.html
+
+三、注册功能实现
+1.设计表单reg.html
+2.利用ajax实现发送数据
+$(function() {
+    $("#reg").on('click', function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            url: "{:url('index/user/insert')}",
+            data: $('#frm').serialize(),
+            dataType: "json",
+            success: function(data) {
+                // console.log(data);
+                switch (data['status']) {
+                    case 1:
+                        alert(data["message"]);
+                        window.location.href="{:url('index/index')}";
+                        break;
+                    case -1:
+                        alert(data["message"]);
+                         window.location.href="{:url('user/register')}";
+                        break;
+                    case 0:
+                        alert(data["message"]);
+                        window.location.href="{:url('user/register')}";
+                        break;
+                }
+            }
+        })
+
+    })
+})
+
+3. User.php控制器进行数据接收
+->insert()方法进行数据处理
+(1)判断接收的数据发送类型是否是ajax
+(2)利用post方法接收数据并进行验证
+(3)进行验证反馈
+
+4.在reg.html中，呈现反馈信息
+见上述代码
+
+5.如果验证通过将写入数据表
+
+建议：大家多使用静态方法
+think\facade\Request
+
+

@@ -1,0 +1,94 @@
+<div class="page-header">
+    <h2>
+        用户登录
+    </h2>
+</div>
+<form class="form-horizontal" id="frm_lg">
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="name">
+            用户名
+        </label>
+        <div class="col-sm-10">
+            <input class="form-control" id="name" name="name" placeholder="用户名" type="text">
+            </input>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="password">
+            密码
+        </label>
+        <div class="col-sm-10">
+            <input class="form-control" id="password" name="password" placeholder="密码" type="password">
+            </input>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="code">
+            验证码
+        </label>
+        <div class="col-sm-10">
+            <img alt="captcha" class="my_code" src="{:captcha_src()}" />
+            <input class="form-control" id="code" name="captcha" placeholder="验证码" type="text">
+            </input>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox">
+                    记住 我
+                    </input>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-default" id="lg" type="submit">
+                登录
+            </button>
+        </div>
+    </div>
+</form>
+<script>
+$(function() {
+    $("#lg").on('click', function(e) {
+        e.preventDefault(); //取消默认事件（动作）
+        $.ajax({
+            type: "post",
+            url: "{:url('index/user/loginCheck')}",
+            data: $('#frm_lg').serialize(),
+            dataType: "json",
+            success: function(data) {
+                // console.log(data);
+                switch (data['status']) {
+                    case 1:
+                        alert(data["message"]);
+                        window.location.href = "{:url('index/index/index')}";
+                        break;
+                    case -1:
+                        alert(data["message"]);
+                        window.location.href = "{:url('index/user/login')}";
+                        break;
+                    case 0:
+                        alert(data["message"]);
+                        window.location.href = "{:url('index/user/login')}";
+                        break;
+                }
+
+            }
+        })
+    });
+    //实现单击后改变验证码的效果
+    $(".my_code").on('click', function(e) {
+        let img_src = $(this).attr('src') + "?r=" + Math.random();
+        $(this).attr('src', img_src);
+    })
+})
+</script>
+<style>
+.my_code:hover {
+    cursor: pointer;
+}
+</style>

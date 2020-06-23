@@ -1,0 +1,103 @@
+<div class="page-header">
+    <h2>
+        用户注册
+    </h2>
+</div>
+<form class="form-horizontal" id="frm">
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="name">
+            用户名
+        </label>
+        <div class="col-sm-10">
+            <input class="form-control" id="name" name="name" placeholder="用户名" type="text">
+            </input>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="email">
+            邮箱
+        </label>
+        <div class="col-sm-10">
+            <input class="form-control" id="email" name="email" placeholder="邮箱" type="email">
+            </input>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="mobile">
+            电话号
+        </label>
+        <div class="col-sm-10">
+            <input class="form-control" id="mobile" name="mobile" placeholder="电话号" type="phone">
+            </input>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="password">
+            密码
+        </label>
+        <div class="col-sm-10">
+            <input class="form-control" id="password" name="password" placeholder="密码" type="password">
+            </input>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="password_confirm">
+            确认密码
+        </label>
+        <div class="col-sm-10">
+            <input class="form-control" id="password_confirm" name="password_confirm" placeholder="确认密码" type="password">
+            </input>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox">
+                    记住 我
+                    </input>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-default" id="reg" type="submit">
+                注册
+            </button>
+        </div>
+    </div>
+</form>
+<script>
+$(function() {
+    $("#reg").on('click', function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            url: "{:url('index/user/insert')}",
+            data: $('#frm').serialize(),
+            dataType: "json",
+            success: function(data) {
+                // console.log(data);
+                switch (data['status']) {
+                    case 1:
+                        alert(data["message"]);
+                        window.location.href = "{:url('index/index/index')}";
+                        break;
+                    case -1:
+                        alert(data["message"]);
+                        window.location.href = "{:url('index/user/register')}";
+                        break;
+                    case 0:
+                        alert(data["message"]);
+                        window.location.href = "{:url('index/user/register')}";
+                        break;
+                }
+            }
+        })
+
+    })
+})
+</script>
+<style>
+</style>
