@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default ">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar">1</span>
+                <span class="icon-bar">2</span>
+                <span class="icon-bar">3</span>
+            </button>
+            <a class="navbar-brand" href="#">技术热点</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{:url('index/index')}">首页 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">PHP</a></li>
+                <li><a href="#">ThinkPHP</a></li>
+                <li><a href="#">JavaScript</a></li>
+                <li><a href="#">Node.js</a></li>
+                <li><a href="#">Vue.js</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">                
+                <li>
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" id="btn_login" class="btn btn-default">搜索</button>
+                    </form>
+                </li>
+                {if !$Think.session.user_name}
+                <li><a href="{:url('user/login')}">登录</a></li>
+                <li><a href="{:url('user/register')}">注册</a></li>
+                {else/}
+                <li><a title="进入用户中心" href="#">{$Think.session.user_name}</a></li>
+                <li><a href="{:url('index/insert')}">发布热点</a></li>
+                <li><a href="{:url('user/logout')}">即出登录</a></li>
+                {/if}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

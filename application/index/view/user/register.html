@@ -1,0 +1,46 @@
+{extend name="index/public:base" /}
+{block name="src"}
+{include file="index/public/bootsrc" /}
+{/block}
+{block name="main"}
+<div class="container">
+    <div class="row" style="border:1px solid #eee">
+        <div class="col-md-8">
+            {include file="index/public/left" /}
+        </div>
+        <div class="col-md-4">
+            {include file="index/public/right" /}
+        </div>
+    </div>
+    <script>
+    $(function() {
+        $("#register").on('click', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'post',
+                url: "{:url('index/user/insert')}",
+                data: $("form").serialize(),
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded',
+                success: function(data) {
+                    console.log(data);
+                    switch (data.status) {
+                        case 1:
+                            alert(data.message);
+                            window.location.href = "{:url('index/index')}";
+                            break;
+                        case 0:
+                        case -1:
+                            alert(data.message);
+                            window.history.back(-1);
+                    }
+
+                }
+
+            })
+        })
+
+    })
+    </script>
+</div>
+{/block}

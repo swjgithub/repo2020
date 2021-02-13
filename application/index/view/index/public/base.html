@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>{$title|default="网站标题"}</title>
+    {block name="src"}引入外部资源{/block}
+</head>
+
+<body>
+    <header id="header">
+        {include file="index/public/nav" /}
+    </header>
+    <section>
+        {block name="main"}main{/block}
+    </section>
+    <footer>
+        {include file="index/public/footer" /}
+    </footer>
+</body>
+
+</html>
